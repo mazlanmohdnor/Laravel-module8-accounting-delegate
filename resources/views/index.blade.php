@@ -21,4 +21,5 @@
     <!-- footer content -->
     @include('layouts.footer-content')
     <!-- footer content -->
+    
 @endsection

@@ -6,12 +6,11 @@
       <li><a><i class="fa fa-home"></i> Home </a></li>
       <li><a><i class="fa fa-edit"></i> Accounting <span class="fa fa-chevron-down"></span></a>
       <ul class="nav child_menu">
+        <li class="current-page"><a href="form_validation.html">Income</a></li>
         <li><a href="form.html">Account</a></li>
-        <li><a href="form_advanced.html">Company</a></li>
-        <li><a href="form_buttons.html">Fast Entry</a></li>
-        <li><a href="form_validation.html">Income</a></li>
         <li><a href="form_wizards.html">Expense</a></li>
         <li><a href="form_upload.html">Account Transfer</a></li>
+        <li><a href="form_buttons.html">Fast Entry</a></li>
       </ul>
     </li>
     <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
