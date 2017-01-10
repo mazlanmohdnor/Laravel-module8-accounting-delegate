@@ -11,6 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('income', function () {
+    return view('income');
+});
+
+Route::get('expense', function () {
+    return view('expense');
+});
+
+Route::get('account-transfer', function () {
+    return view('account-transfer');
+});
+
+Route::get('nican.coa-nican', function () {
+    return view('nican.coa-nican');
 });
