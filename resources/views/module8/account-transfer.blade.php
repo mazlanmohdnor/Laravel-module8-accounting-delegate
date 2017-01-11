@@ -23,7 +23,7 @@
 </div>
 <div class="alert alert-success alert-dismissible fade in" role="alert">
    <div class="title_left">
-      <h3>Income</h3>
+      <h3>Account Transfer</h3>
       <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
    </div>
 </div>
@@ -352,4 +352,7 @@
 <!-- footer content -->
     @include('layouts.footer-content')
     <!-- footer content -->
+    {{-- js files start --}}
+@include ('layouts.js')
+{{-- js files end --}}
 @endsection

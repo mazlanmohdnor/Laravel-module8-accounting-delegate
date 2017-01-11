@@ -352,4 +352,7 @@
 <!-- footer content -->
     @include('layouts.footer-content')
     <!-- footer content -->
+    {{-- js files start --}}
+@include ('layouts.js')
+{{-- js files end --}}
 @endsection
