@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 @section('content')
 <!-- menu profile quick info -->
-@include('layouts.profile-quick-info')
+{{-- @include('layouts.profile-quick-info') --}}
 <!-- menu profile quick info -->
 <br />
 <!-- sidebar menu -->
-@include('layouts.sidebar-menu')
+{{-- @include('layouts.sidebar-menu') --}}
 <!-- sidebar menu -->
 <!-- /menu footer buttons -->
 @include('layouts.footer-button')
@@ -24,7 +24,7 @@
 
   <div class="alert alert-success alert-dismissible fade in" role="alert">
     <div class="title_left">
-      <h3>Fast Entry</h3>
+      <h3>Income</h3>
       <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
     </div>
   </div>
@@ -35,10 +35,10 @@
 
         <div class="x_panel">
           <div class="x_title">
-            <h2>Company Fast Entry<small>Users</small></h2>
+            <h2>Company Income<small>Users</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <!-- Large modal -->
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target=".add_entry_modal">Add Entry</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target=".add_income_modal">Add Income</button>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".add_user_modal">Invite Accountant</button>
             </ul>
             <div class="clearfix"></div>
@@ -65,28 +65,73 @@
 
 
 
-{{-- add_entry_modal start --}}
-        <div class="modal fade add_entry_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+{{-- add_income_modal start --}}
+        <div class="modal fade add_income_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Insert entry</h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Insert Income</h4>
               </div>
               <div class="modal-body">
                 {{-- form start --}}
-                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="{{ url('fast-entry/store') }}">
+                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="{{ route('module8.store') }}">
                   {{ csrf_field() }}
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Year</label>
+                    {{-- account akan dapat list of account (group shah) --}}
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Account</label>
                     <div class="col-md-8 col-sm-8 col-xs-12">
-                      <input type="text" class="form-control" name="year">
+                      <select class="form-control" name="account">
+                      @foreach($accounts as $account)
+                        <option value="{{ $account->account_name }}">{{ $account->account_name }}</option>
+                      @endforeach
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">COA</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insert By</label>
                     <div class="col-md-8 col-sm-8 col-xs-12">
-                      <input type="text" class="form-control" name="coa">
+                      <input type="text" class="form-control" name="accountant_id" value="1">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Income Category</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <select class="form-control" name="income_category">
+                        <option value="Webiste design">Webiste design</option>
+                        <option value="Domain Hosting">Domain Hosting</option>
+                        <option value="Mobile Application">Mobile Application</option>
+                        <option value="Computer Hardware">Computer Hardware</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <select class="form-control" id="select2_single" tabindex="-2" name="payment_method">
+                        <option></option>
+                        <option value="cash">Cash</option>
+                        <option value="cheque">Cheque</option>
+                        <option value="paypal">Paypal</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Amount</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <input type="text" class="form-control" name="amount" placeholder="Amount">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Date</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <input type="text" class="form-control" name="date_created">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Payer</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <input class="form-control col-md-7 col-xs-12" type="text" name="payer">
                     </div>
                   </div>
                   <div class="form-group">
@@ -94,23 +139,6 @@
                     </label>
                     <div class="col-md-8 col-sm-8 col-xs-12">
                       <textarea class="form-control" rows="3" name="description"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Debit/Credit
-                    </label>
-                    <div class="col-md-8 col-sm-8 col-xs-12">
-                    <select class="form-control" name="debit_credit">
-                        <option value="debit">Debit</option>
-                        <option value="Credit">Credit</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Amount
-                    </label>
-                    <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input type="text" class="form-control" name="amount">
                     </div>
                   </div>
                   
@@ -128,7 +156,7 @@
             </div>
           </div>
         </div>
-{{-- add_entry_modal end --}}
+{{-- add_income_modal end --}}
 
 {{-- add_user_modal start --}}
 <div class="modal fade add_user_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -213,7 +241,7 @@
     $.ajaxSetup({
        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
     }); 
-    var clients = {!! $entries !!};
+    var clients = {!! $incomes !!};
  
 
  
@@ -233,7 +261,7 @@
       rowClick: function(item) {
          console.log(item.item);
       $('#row-detail').modal('show');
-      $('#content-detail').html("Item Number: "+item.item.id+"<br>"+"entry Category: "+item.item.entry_category+"");
+      $('#content-detail').html("Item Number: "+item.item.id+"<br>"+"Income Category: "+item.item.income_category+"");
       
       },
 
@@ -258,7 +286,7 @@
                 var id = item.id;
                 return $.ajax({
                     type: "PUT",
-                    url: "/fast-entry/"+id,
+                    url: "/expense/"+id,
                     data: item
                 });
             },
@@ -267,7 +295,7 @@
                 var id = item.id;
                 return $.ajax({
                     type: "DELETE",
-                    url: "/fast-entry/"+id,
+                    url: "/expense/"+id,
                     data: item
                 });
             },
@@ -278,11 +306,15 @@
         data: clients,
         
         fields: [
-            { name: "year", type: "text", width: 50},
-            { name: "coa", type: "text", width: 60 },
-            { name: "description", type: "text", width: 100 },
-            { name: "debit_credit", type: "text", width: 50 },
+            { name: "account", type: "text", width: 50},
+            { name: "accountant_id", type: "text", width: 60 },
+            { name: "income_category", type: "text", width: 100 },
+            { name: "payment_method", type: "text", width: 50 },
             { name: "amount", type: "text", width: 50 },
+            { name: "date_created", type: "text", width: 50 },
+            { name: "payer", type: "text", width: 100 },
+            { name: "description", type: "text", width: 200 },
+            { name: "verified", width: 50 , readOnly: false  },
             { type: "control"}
         ]
     });

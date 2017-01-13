@@ -6,9 +6,9 @@
       <li><a><i class="fa fa-home"></i> Home </a></li>
       <li><a><i class="fa fa-edit"></i> Accounting <span class="fa fa-chevron-down"></span></a>
       <ul class="nav child_menu">
-        <li><a href="{{ url('income') }}">Income</a></li>
+        <li><a href="{{ url('module8') }}">Income</a></li>
         <li><a href="{{ url('expense') }}">Expense</a></li>
-        <li><a href="{{ url('account-transfer') }}">Account Transfer</a></li>
+        <li><a href="{{ url('transfer') }}">Account Transfer</a></li>
         <li><a href="{{ url('fast-entry') }}">Fast Entry</a></li>
       </ul>
     </li>

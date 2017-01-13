@@ -4,27 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Income extends Model
+class Expense extends Model
 {
     //mass assignment
     protected $fillable = [
     "account",
     "accountant_id",
-    "income_category",
+    "expense_category",
     "payment_method",
     "amount",
     "date_created",
-    "payer",
+    "payee",
     "description"
     ]; 
-
-    public function user() {
-        return $this->belongsTo('App\User', 'accountant_id');
-    }
 }
-
-
-
-
-
-

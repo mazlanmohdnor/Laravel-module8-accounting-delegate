@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Income;
+use App\Account;
 
 class IncomeController extends Controller
 {
     public function index()
     {
         //show page
-        $income = Income::all();
-        return view('module8.income', compact('income'));
+        $incomes = Income::orderBy('id', 'DESC')->get();
+        $accounts = Account::all();
+        // return $accounts;
+        return view('module8.income', compact('incomes','accounts'));
     }
 
     public function create()
@@ -38,7 +41,9 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $income = Income::findOrFail($id);
+        return $income;
+        return view('module8.show', compact('income'));  
     }
 
     /**
@@ -54,7 +59,8 @@ class IncomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $income = Income::findOrFail($id);
+        $income->update($request->all());
     }
 
     /**
@@ -62,6 +68,7 @@ class IncomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $income = Income::findOrFail($id);
+        $income->delete();
     }
 }
